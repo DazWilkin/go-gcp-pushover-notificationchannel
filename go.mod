@@ -3,7 +3,7 @@ module github.com/DazWilkin/go-gcp-pushover-notificationchannel
 go 1.23.3
 
 require (
-	github.com/GoogleCloudPlatform/functions-framework-go v1.9.0
+	github.com/GoogleCloudPlatform/functions-framework-go v1.9.1
 	github.com/prometheus/client_golang v1.20.5
 )
 
