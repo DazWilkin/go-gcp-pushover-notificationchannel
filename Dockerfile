@@ -1,11 +1,14 @@
-ARG GOLANG_VERSION="1.23.3"
+ARG GOLANG_VERSION="1.24"
 
 ARG PROJECT="go-gcp-pushover-notificationchannel"
+
+ARG TARGETOS
+ARG TARGETARCH
 
 ARG COMMIT
 ARG VERSION
 
-FROM docker.io/golang:${GOLANG_VERSION} as build
+FROM --platform=${TARGETARCH} docker.io/golang:${GOLANG_VERSION} AS build
 
 ARG PROJECT
 WORKDIR /${PROJECT}
@@ -23,10 +26,14 @@ COPY incident_type_test.go incident_type_test.go
 COPY message.go message.go
 COPY template.go template.go
 
+ARG TARGETOS
+ARG TARGETARCH
+
 ARG COMMIT
 ARG VERSION
+
 RUN BUILD_TIME=$(date +%s) && \
-    CGO_ENABLED=0 GOOS=linux go build \
+    CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -a \
     -installsuffix cgo \
     -ldflags "-X 'main.BuildTime=${BUILD_TIME}' -X 'main.GitCommit=${COMMIT}' -X 'main.OSVersion=${VERSION}'" \
@@ -34,7 +41,7 @@ RUN BUILD_TIME=$(date +%s) && \
     ./cmd/server
 
 
-FROM gcr.io/distroless/static
+FROM --platform=${TARGETARCH} gcr.io/distroless/static-debian12:latest
 
 LABEL org.opencontainers.image.source="https://github.com/DazWilkin/go-gcp-pushover-notificationchannel"
 
