@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"html/template"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -52,7 +52,7 @@ func Webhook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data, err := ioutil.ReadAll(r.Body)
+	data, err := io.ReadAll(r.Body)
 	if err != nil {
 		log.Println("Unable to read message body")
 		w.WriteHeader(http.StatusBadRequest)

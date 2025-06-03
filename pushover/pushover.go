@@ -3,7 +3,7 @@ package pushover
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 )
@@ -63,7 +63,7 @@ func (c *Client) SendMessage(title, message string) error {
 
 	log.Printf("[pushover:Client.NewSendMessage] Response code: %d", resp.StatusCode)
 
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Println("[pushover:Client.NewSendMessage] Unable to read response body")
 		return err
