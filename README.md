@@ -3,7 +3,7 @@
 [![build-container](https://github.com/DazWilkin/go-gcp-pushover-notificationchannel/actions/workflows/build.yml/badge.svg)](https://github.com/DazWilkin/go-gcp-pushover-notificationchannel/actions/workflows/build.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/DazWilkin/go-gcp-pushover-notificationchannel.svg)](https://pkg.go.dev/github.com/DazWilkin/go-gcp-pushover-notiificationchannel)
 [![Go Report Card](https://goreportcard.com/badge/github.com/DazWilkin/go-gcp-pushover-notificationchannel)](https://goreportcard.com/report/github.com/DazWilkin/go-gcp-pushover-notificationchannel)
-+ `ghcr.io/dazwilkin/go-gcp-pushover-notificationchannel:c138ed4eb7e4883b5aae4a03779e3eb3f18e2d7e`
++ `ghcr.io/dazwilkin/go-gcp-pushover-notificationchannel:7aac6767f5312bb75a306acb553d42bf19dafc25`
 
 See [Using Google Monitoring Alerting to send Pushover notifications](https://pretired.dazwilkin.com/posts/220514/)
 
@@ -15,7 +15,7 @@ See [Using Google Monitoring Alerting to send Pushover notifications](https://pr
 ```bash
 cosign verify \
 --key=./cosign.pub \
-ghcr.io/dazwilkin/go-gcp-pushover-notificationchannel:c138ed4eb7e4883b5aae4a03779e3eb3f18e2d7e
+ghcr.io/dazwilkin/go-gcp-pushover-notificationchannel:7aac6767f5312bb75a306acb553d42bf19dafc25
 ```
 
 > **NOTE** [`cosign.pub`](/cosign.pub) may be downloaded here
