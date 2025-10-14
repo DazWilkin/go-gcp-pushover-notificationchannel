@@ -1,10 +1,15 @@
 name: build-container
-
 on:
   push:
     branches:
       - master
-
+    paths-ignore:
+      - '**.md'
+      - '**.json'
+      - '**.jsonnet'
+      - '**.key'
+      - '**.pub'
+      - '**.sh'
 jobs:
   golangci:
     name: lint
@@ -19,9 +24,10 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v8
         with:
-          version: v2.1.0
+          version: latest
   go-gcp-pushover-notificationchannel:
     name: go-gcp-pushover-notificationchannel
+    needs: golangci
     runs-on: ubuntu-latest
     env:
       REPO: dazwilkin/go-gcp-pushover-notificationchannel
@@ -66,7 +72,7 @@ jobs:
         env:
           COSIGN_PASSWORD: ""
       - name: revise-docs
-        run: |
+        run: |-
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Actions"
           for FILENAME in "./README.md"
